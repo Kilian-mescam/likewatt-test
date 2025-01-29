@@ -1,15 +1,17 @@
 import { Data } from "@/lib/entities";
+import { DataCard } from "../DataCard";
 
 type Props = {
-    dataState: Data[],
+    displayedData?: Data
+    deleteData: (dataId: string) => void
   }
 
   
-export function EditDocument({ dataState }: Props) {
+export function EditDocument({ displayedData, deleteData }: Props) {
     
     return (
-        <div className="bg-blue-100  w-1/2">
-                Edit Document
+        <div className="w-1/2 p-10">
+                {displayedData !== undefined ? <DataCard data={displayedData} deleteData={deleteData} /> : null }
             </div>
     ) 
 }

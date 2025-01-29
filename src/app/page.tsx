@@ -9,7 +9,7 @@ export default async function Home() {
     <div>
       <main>
         <div className='p-5'>
-          <Dashboard data={data} />
+          <Dashboard datas={data} />
       </div>
       </main>
     </div>

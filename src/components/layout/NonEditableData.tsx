@@ -1,25 +1,18 @@
 
 import { Data } from "@/lib/entities"
+import { DataCard } from "../DataCard"
+import { DataTable } from "../DataTable";
 
 type Props = {
     dataState: Data[],
+    handleSelect: (data: Data) => void;
   }
   
-export function NonEditableData({ dataState }: Props ) {
-
+export function NonEditableData({ dataState, handleSelect }: Props ) {
     return (
-        <div className="bg-yellow-100 w-1/2">
-                <h1>Editable</h1>
-                <div className='flex flex-col w-full'>
-                    {dataState.map((item: Data, key) => (
-                        <ul className='p-10 border border-black m-4' key={item.id} >
-                            <li>ID: {item.id}</li>
-                            <li>Est-il actif ? {item.isActive ? 'oui' : 'non'}</li>
-                            <li>Capacité: {item.capacity}</li>
-                            <li>Model: {item.model}</li>
-                            <li>Tilt: {item.tilt}</li>
-                        </ul>
-                    ))}
+        <div className="w-1/2">
+                <div className='flex flex-col gap-10 w-full p-10'>
+                    <DataTable datas={dataState} handleSelect={handleSelect}/>
             </div>
         </div>
     ) 

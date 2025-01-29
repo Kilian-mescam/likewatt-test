@@ -7,14 +7,16 @@ import { reducer } from '@/lib/reducer';
 import React, { useReducer, useState } from 'react';
 
 type Props = {
-  data: Data[],
+  datas: Data[],
 }
 
-export default function Dashboard({ data }: Props) {
-  const [dataState, setDataState] = useState(data);
+export default function Dashboard({ datas }: Props) {
+  const [dataState, setDataState] = useState(datas);
+  const [displayedData, setDisplayedData] = useState<Data | undefined>();
+
   const [loading, setLoading] = useState(true);
 
-  const [users, dispatch] = useReducer(reducer, dataState);
+  const [reducersDatas, dispatch] = useReducer(reducer, dataState);
 
     // Fonction pour ajouter un data
     const addData = (newData: Data) => {
@@ -28,8 +30,8 @@ export default function Dashboard({ data }: Props) {
 
   return (
     <div className='flex w-full'>
-        <NonEditableData dataState={dataState} />
-        <EditDocument dataState={dataState} />
+        <NonEditableData dataState={dataState} handleSelect={setDisplayedData} />
+        <EditDocument displayedData={displayedData} deleteData={deleteData} />
     </div>
   );
 };
