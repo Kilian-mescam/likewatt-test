@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Data } from "@/lib/entities"
 import { Button } from "./ui/button";
 import { DeleteDialog } from "./DeleteDialog";
+import { Input } from "./ui/input";
+import { Checkbox } from "./ui/checkbox";
 
 type Props = {
   data: Data,
@@ -16,15 +18,24 @@ export function DataCard(
 ) {
 
   return (
-<Card className="cursor-pointer border-2 border-black">
+<Card>
   <CardHeader>
     <CardTitle>{data.model}</CardTitle>
     <CardDescription>{data.id}</CardDescription>
   </CardHeader>
   <CardContent>
-    <p>Actif : {data.isActive}</p>
-    <p>Capacity : {data.capacity}</p>
-    <p>Tilt: {data.tilt}</p>
+    <Input type="email" placeholder="Email" value={data.id} />
+    <Input type="email" placeholder="Email" value={data.model}  />
+    <Input type="email" placeholder="Email" value={data.tilt} />
+    <div className="flex items-center space-x-2">
+    <Checkbox id="terms" />
+    <label
+        htmlFor="terms"
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+    >
+        Accept terms and conditions
+    </label>
+    </div>
   </CardContent>
   <CardFooter className="flex gap-4">
     <Button variant={"outline"} >Editer</Button>
