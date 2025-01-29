@@ -8,7 +8,7 @@ export const getData = async () => {
     const response = await axios.get(url);
 
     // Extract the data from the response
-    const data = response.data;
+    const data = response.data.data;
 
     return data; // Return the full data or customize based on the structure
   } catch (error: unknown) {
