@@ -7,7 +7,7 @@ import { Input } from "./ui/input";
 import { Checkbox } from "./ui/checkbox";
 
 type Props = {
-  model: Model,
+  model?: Model,
   className?: string,
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
   children: React.ReactNode
@@ -20,7 +20,7 @@ export function ModelCard(
   return (
 <Card>
   <CardHeader>
-    <CardTitle>{model.id ? model.id : "Aucun ID attribué"}</CardTitle>
+    <CardTitle>{model?.id ? model?.id : "Aucun ID attribué"}</CardTitle>
   </CardHeader>
   <CardContent className='flex flex-col gap-5'>
     {children}

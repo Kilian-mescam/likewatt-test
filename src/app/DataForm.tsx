@@ -13,7 +13,7 @@ import { Dispatch, SetStateAction, useEffect } from "react"
 import { Label } from "@/components/ui/label"
 
 type Props = {
-    model: Model,
+    model?: Model,
     setModelState: Dispatch<SetStateAction<Model[]>>
 }
 
@@ -53,11 +53,9 @@ export default function DataForm({ model, setModelState }: Props) {
                 )
             )
         } else {
-            setModelState((prevState) =>
-                prevState.map((item) =>
-                    (item.model === model.model ? { ...item, ...model } : item)
-                )
-            )} 
+            // If model has no ID, add it as a new entry
+            setModelState((prevState) => [...prevState, { ...model, id: String(Date.now()) }]) // Use a timestamp as the new id
+        }
     }
 
     // Handle form submission
