@@ -11,6 +11,7 @@ import {
 import { Model } from "@/lib/entities"
 import { v4 as uuidv4 } from 'uuid';
 import { Card, CardContent } from "./ui/card";
+import { Check } from "lucide-react";
   
   type Props = {
     models: Model[]
@@ -26,8 +27,9 @@ import { Card, CardContent } from "./ui/card";
             <TableRow>
               <TableHead className="w-[100px]">Id</TableHead>
               <TableHead>Modèle</TableHead>
-              <TableHead>Capacité</TableHead>
+              <TableHead className="text-center">Capacité</TableHead>
               <TableHead className="text-right">Tilt</TableHead>
+              <TableHead>Actif</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -35,8 +37,11 @@ import { Card, CardContent } from "./ui/card";
               <TableRow className='cursor-pointer hover:bg-gray-100' key={uuidv4()} onClick={() => { handleSelect(model) } } >
                 <TableCell className="font-medium">{model.id}</TableCell>
                 <TableCell>{model.model}</TableCell>
-                <TableCell>{model.capacity}</TableCell>
+                <TableCell className="text-center">{model.capacity}</TableCell>
                 <TableCell className="text-right">{model.tilt}</TableCell>
+                <TableCell className="text-right">
+                  {model.isActive ? <Check /> : null}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -46,4 +51,3 @@ import { Card, CardContent } from "./ui/card";
       
     )
   }
-  

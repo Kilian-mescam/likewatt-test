@@ -10,24 +10,24 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
   import { Button } from "@/components/ui/button"
-import { Data } from "@/lib/entities"
+import { Model } from "@/lib/entities"
 
   type Props = {
-    data: Data,
+    model?: Model,
     deleteData?: (dataId: string) => void
     className?: string,
   }
   
   export function DeleteDialog(
-    { data, className, deleteData, ...props }: Props) {
+    { model, className, deleteData, ...props }: Props) {
     return (
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="destructive" >Supprilmer définitivement</Button>
+          <Button variant="destructive" >Supprimer</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Souhaitez-vous supprimer le projet {data.model} </AlertDialogTitle>
+            <AlertDialogTitle>Souhaitez-vous supprimer le projet {model?.model} </AlertDialogTitle>
             <AlertDialogDescription>
               This action cannot be undone. This will permanently delete your
               account and remove your data from our servers.
@@ -35,7 +35,7 @@ import { Data } from "@/lib/entities"
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => { deleteData?.(data.id)} } >Supprimer définitivement</AlertDialogAction>
+            <AlertDialogAction onClick={() => { model !== undefined && deleteData?.(model?.id)} } >Supprimer définitivement</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

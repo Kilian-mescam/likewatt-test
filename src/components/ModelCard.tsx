@@ -20,16 +20,11 @@ export function ModelCard(
   return (
 <Card>
   <CardHeader>
-    <CardTitle>{model.model}</CardTitle>
-    <CardDescription>{model.id}</CardDescription>
+    <CardTitle>{model.id}</CardTitle>
   </CardHeader>
   <CardContent className='flex flex-col gap-5'>
     {children}
   </CardContent>
-  <CardFooter className="flex gap-4">
-    <Button variant={"outline"} >Editer</Button>
-    <DeleteDialog data={model} />
-  </CardFooter>
 </Card>
   )
 }
