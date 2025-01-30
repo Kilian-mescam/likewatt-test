@@ -10,7 +10,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form } from "@/components/ui/form"
 import { Dispatch, SetStateAction, useEffect } from "react"
-import { DeleteDialog } from "@/components/DeleteDialog"
 import { Label } from "@/components/ui/label"
 
 type Props = {
@@ -44,24 +43,30 @@ export default function DataForm({ model, setModelState }: Props) {
         formState: { errors },
     } = form;  // Make sure to destructure from the `form` object here
 
-    const updateModelStateById = (id: string, key: keyof Model, newValue: Model[keyof Model]) => {        
-        setModelState((prevState) =>
-            prevState.map((item) =>
-                item.id === id ? { ...item, [key]: newValue } : item
+    // Update the model state by id or add the new model if id is missing
+    const updateModelState = (model: Model) => {
+        if (model.id) {
+            // If model has an ID, update it in the state
+            setModelState((prevState) =>
+                prevState.map((item) =>
+                    item.id === model.id ? { ...item, ...model } : item
+                )
             )
-        );
-    };
+        } else {
+            setModelState((prevState) =>
+                prevState.map((item) =>
+                    (item.model === model.model ? { ...item, ...model } : item)
+                )
+            )} 
+    }
 
+    // Handle form submission
     async function submitForm(model: Model) {
-        Object.keys(model).forEach((key) => {
-            const typedKey = key as keyof Model;
-            const newValue = model[typedKey];
-            updateModelStateById(model.id, typedKey, newValue);
-        });
+        updateModelState(model)
 
         toast({
-            title: "Modèle modifié avec succès!",
-        });
+            title: model.id ? "Modèle modifié avec succès!" : "Nouveau modèle créé avec succès!",
+        })
     }
 
     useEffect(() => {

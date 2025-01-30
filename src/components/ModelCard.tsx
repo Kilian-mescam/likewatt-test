@@ -20,7 +20,7 @@ export function ModelCard(
   return (
 <Card>
   <CardHeader>
-    <CardTitle>{model.id}</CardTitle>
+    <CardTitle>{model.id ? model.id : "Aucun ID attribué"}</CardTitle>
   </CardHeader>
   <CardContent className='flex flex-col gap-5'>
     {children}
