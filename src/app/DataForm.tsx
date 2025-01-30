@@ -12,13 +12,15 @@ import { Form } from "@/components/ui/form"
 import { Dispatch, SetStateAction, useEffect } from "react"
 import { Label } from "@/components/ui/label"
 import { generateCustomUUID } from "@/lib/utils"
+import { DeleteDialog } from "@/components/DeleteDialog"
 
 type Props = {
     model?: Model,
     setModelState: Dispatch<SetStateAction<Model[]>>
+    setDisplayedModel: Dispatch<SetStateAction<Model | undefined>>
 }
 
-export default function DataForm({ model, setModelState }: Props) {
+export default function DataForm({ model, setModelState , setDisplayedModel}: Props) {
 
     const  { toast } = useToast();
 
@@ -43,6 +45,20 @@ export default function DataForm({ model, setModelState }: Props) {
         reset,
         formState: { errors },
     } = form;  // Make sure to destructure from the `form` object here
+
+    // Function to delete the displayed model
+    const deleteModel = (modelToDelete: Model) => {
+        if (!model) return;
+
+        // Remove the model from the modelState
+        setModelState(prevState =>
+            prevState.filter(item => item.id !== modelToDelete.id)
+        );
+
+        // Clear the displayedModel from the state
+        setDisplayedModel(undefined);
+    };
+
 
     // Update the model state by id or add the new model if id is missing
     const updateModelState = (model: Model) => {
@@ -149,6 +165,8 @@ export default function DataForm({ model, setModelState }: Props) {
                             >
                                 Sauvegarder
                             </Button>
+                            {model ? <DeleteDialog model={model} deleteData={() => { deleteModel(model) }}/> : null}
+                            
                         </div>
                     </div>
 

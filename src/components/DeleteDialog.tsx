@@ -14,7 +14,7 @@ import { Model } from "@/lib/entities"
 
   type Props = {
     model?: Model,
-    deleteData?: (dataId: string) => void
+    deleteData?: () => void
     className?: string,
   }
   
@@ -35,7 +35,7 @@ import { Model } from "@/lib/entities"
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => { model !== undefined && deleteData?.(model?.id)} } >Supprimer définitivement</AlertDialogAction>
+            <AlertDialogAction onClick={deleteData} >Supprimer définitivement</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
