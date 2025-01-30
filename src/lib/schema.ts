@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const modelSchema = z.object({
   id: z.string(),
-  model: z.string().min(1, "Model is required"),
-  capacity: z.number().min(1, "Capacity must be greater than 0"),
+  model: z.string().optional(),
+  capacity: z.number().optional(),
   tilt: z.number().min(0, "Tilt must be a positive number"),
   isActive: z.boolean(),
 });

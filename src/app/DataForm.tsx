@@ -1,6 +1,6 @@
 "use client"
 
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/hooks/use-toast"
 import { Model } from "@/lib/entities"
@@ -44,12 +44,7 @@ export default function DataForm({ model, setModelState }: Props) {
         formState: { errors },
     } = form;  // Make sure to destructure from the `form` object here
 
-    const updateModelStateById = (id: string, key: keyof Model, newValue: Model[keyof Model]) => {
-
-        console.log('id', id)
-        console.log('key', key)
-        console.log('newValue', newValue)
-        
+    const updateModelStateById = (id: string, key: keyof Model, newValue: Model[keyof Model]) => {        
         setModelState((prevState) =>
             prevState.map((item) =>
                 item.id === id ? { ...item, [key]: newValue } : item
@@ -61,18 +56,14 @@ export default function DataForm({ model, setModelState }: Props) {
         Object.keys(model).forEach((key) => {
             const typedKey = key as keyof Model;
             const newValue = model[typedKey];
-
-            console.log('data inside submit form', model)
-
             updateModelStateById(model.id, typedKey, newValue);
         });
 
         toast({
-            title: "Model updated successfully!",
+            title: "Modèle modifié avec succès!",
         });
     }
 
-    // Effect to reset the form whenever `model` changes
     useEffect(() => {
         reset({
             id: model?.id ?? '',
@@ -81,8 +72,7 @@ export default function DataForm({ model, setModelState }: Props) {
             capacity: model?.capacity ?? 0,
             model: model?.model ?? '',
         });
-    }, [model, reset]); // Dependencies: re-run effect when `model` changes
-
+    }, [model, reset]);
 
     return (
         <div className="flex flex-col">
@@ -91,48 +81,62 @@ export default function DataForm({ model, setModelState }: Props) {
                     onSubmit={form.handleSubmit(submitForm)}
                     className="flex flex-col gap-4 md:gap-8"
                 >
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-4">
                     
                     {/* Model Name */}
-                        <Input
+                        <div>
+                            <Label>Modèle</Label>
+                            <Input
                             type="text"
-                            placeholder="Model Name"
+                            placeholder="Modèle"
                             {...form.register('model')}
-                        />
+                            />
+                        </div>
+                        
 
                         {/* Tilt */}
-                        <Input
-                            type="number"
-                            placeholder="Tilt"
-                            min={0}
-                            max={180}
-                            {...form.register('tilt', { valueAsNumber: true })}
-                        />
-
+                        <div>
+                            <Label>Tilt</Label>
+                            <Input
+                                type="number"
+                                placeholder="Tilt"
+                                min={0}
+                                max={180}
+                                {...form.register('tilt', { valueAsNumber: true })}
+                            />
+                        </div>
+                        
                         {/* Capacity */}
-                        <Input
-                            type="number"
-                            placeholder="Capacity"
-                            {...form.register('capacity', { valueAsNumber: true })}
-                        />
-
+                        <div>
+                            <Label>Capacité</Label>
+                            <Input
+                                type="number"
+                                placeholder="Capacité"
+                                min={0}
+                                {...form.register('capacity', { valueAsNumber: true })}
+                            />
+                        </div>
+                        
                         {/* Active Checkbox */}
                         <div className="flex items-center space-x-2">
-                            <Checkbox
-                                id="isActive"
-                                {...form.register('isActive')}
+                            <Label>Actif</Label>
+                            <Controller
+                                control={control}
+                                name="isActive"
+                                render={({ field }) => (
+                                    <Checkbox
+                                        id="isActive"
+                                        checked={field.value}
+                                        onCheckedChange={(checked) => field.onChange(checked)} // Ensure onChange is handled
+                                        onChange={(e) => field.onChange(e.target as HTMLInputElement)} // Ensure that `checked` state is updated
+                                    />
+                                )}
                             />
-                            <label
-                                htmlFor="isActive"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                Model Active
-                            </label>
                         </div>
                        
                     </div>
                     <div className="flex flex-col gap-4 w-full max-w-xs">
-                        <div className="flex gap-2 mt-10">
+                        <div className="flex gap-2">
                             <Button
                                 type="submit"
                                 className=""
