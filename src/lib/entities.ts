@@ -1,4 +1,4 @@
-export type Data = {
+export type Model = {
     id: string
     isActive: boolean
     tilt: number

@@ -2,22 +2,21 @@
 
 import { EditDocument } from '@/components/layout/EditDocument';
 import { NonEditableData } from '@/components/layout/NonEditableData';
-import { Data } from '@/lib/entities';
-import { reducer } from '@/lib/reducer';
+import { Model } from '@/lib/entities';
 import React, { useEffect, useState } from 'react';
 
 type Props = {
-  datas: Data[],
+  models: Model[],
 }
 
-export default function Dashboard({ datas }: Props) {
-  const [dataState, setDataState] = useState(datas);
-  const [displayedData, setDisplayedData] = useState<Data | undefined>();
+export default function Dashboard({ models }: Props) {
+  const [modelState, setModelState] = useState(models);
+  const [displayedModel, setDisplayedModel] = useState<Model | undefined>();
 
   return (
     <div className='flex w-full'>
-        <NonEditableData dataState={dataState} handleSelect={setDisplayedData} />
-        <EditDocument displayedData={displayedData} />
+        <NonEditableData modelState={modelState} handleSelect={setDisplayedModel} />
+        <EditDocument displayedModel={displayedModel} setModelState={setModelState} />
     </div>
   );
 };
