@@ -29,13 +29,12 @@ import { Model } from "@/lib/entities"
           <AlertDialogHeader>
             <AlertDialogTitle>Souhaitez-vous supprimer le projet {model?.model} </AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              Cette action va entrainer la suppression du modèle {model?.model}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={deleteData} >Supprimer définitivement</AlertDialogAction>
+            <AlertDialogAction onClick={deleteData} className='bg-red-400'>Supprimer définitivement</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
