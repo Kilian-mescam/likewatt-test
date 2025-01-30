@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form } from "@/components/ui/form"
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, SetStateAction, useEffect } from "react"
 import { DeleteDialog } from "@/components/DeleteDialog"
 import { Label } from "@/components/ui/label"
 
@@ -29,6 +29,7 @@ export default function DataForm({ model, setModelState }: Props) {
         capacity: model?.capacity ?? 0,
         model: model?.model ?? ''
     };
+
 
     const form = useForm<Model>({
         mode: 'onBlur',
@@ -70,6 +71,18 @@ export default function DataForm({ model, setModelState }: Props) {
             title: "Model updated successfully!",
         });
     }
+
+    // Effect to reset the form whenever `model` changes
+    useEffect(() => {
+        reset({
+            id: model?.id ?? '',
+            isActive: model?.isActive ?? false,
+            tilt: model?.tilt ?? 0,
+            capacity: model?.capacity ?? 0,
+            model: model?.model ?? '',
+        });
+    }, [model, reset]); // Dependencies: re-run effect when `model` changes
+
 
     return (
         <div className="flex flex-col">
