@@ -8,7 +8,7 @@ import { CirclePlus } from "lucide-react"
 type Props = {
   title: string,
   className?: string,
-  onClick?: (bool: boolean) => void,
+  onClick?: () => void,
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
 } & ButtonHTMLAttributes<HTMLButtonElement>
 

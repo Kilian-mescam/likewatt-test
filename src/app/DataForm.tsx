@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form } from "@/components/ui/form"
 import { Dispatch, SetStateAction, useEffect } from "react"
 import { Label } from "@/components/ui/label"
+import { generateCustomUUID } from "@/lib/utils"
 
 type Props = {
     model?: Model,
@@ -54,7 +55,7 @@ export default function DataForm({ model, setModelState }: Props) {
             )
         } else {
             // If model has no ID, add it as a new entry
-            setModelState((prevState) => [...prevState, { ...model, id: String(Date.now()) }]) // Use a timestamp as the new id
+            setModelState((prevState) => [...prevState, { ...model, id: generateCustomUUID() }]) // Use a timestamp as the new id
         }
     }
 

@@ -32,7 +32,7 @@ export default function Dashboard({ models }: Props) {
   return (
     <div className='flex w-full'>
         <NonEditableData modelState={modelState} handleSelect={setDisplayedModel} />
-        <EditDocument displayedModel={displayedModel} setModelState={setModelState} />
+        <EditDocument displayedModel={displayedModel} setModelState={setModelState} setDisplayedModel={setDisplayedModel} />
     </div>
   );
 };
