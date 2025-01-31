@@ -10,7 +10,7 @@ import {
   } from "@/components/ui/table"
 import { Model } from "@/lib/entities"
 import { v4 as uuidv4 } from 'uuid';
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Check } from "lucide-react";
   
   type Props = {
@@ -21,6 +21,9 @@ import { Check } from "lucide-react";
   export function ModelTable({ models, handleSelect, ...props }: Props) {
     return (
       <Card>
+          <CardHeader>
+            <CardTitle>Non Editable</CardTitle>
+          </CardHeader>
         <CardContent>
           <Table>
           <TableHeader>

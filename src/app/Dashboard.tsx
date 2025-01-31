@@ -2,15 +2,17 @@
 
 import { EditDocument } from '@/components/layout/EditDocument';
 import { NonEditableData } from '@/components/layout/NonEditableData';
-import { Model } from '@/lib/entities';
+import { Model, WeatherData } from '@/lib/entities';
 import React, { useEffect, useState } from 'react';
 import { generateCustomUUID } from '@/lib/utils';
+import { WeatherPanel } from '@/components/layout/WeatherPanel';
 
 type Props = {
   models: Model[],
+  weatherData: WeatherData
 }
 
-export default function Dashboard({ models }: Props) {
+export default function Dashboard({ models, weatherData }: Props) {
   const [modelState, setModelState] = useState(models);
   const [displayedModel, setDisplayedModel] = useState<Model | undefined>();
 
@@ -30,9 +32,18 @@ export default function Dashboard({ models }: Props) {
 }, [modelState]);
 
   return (
-    <div className='flex w-full'>
-        <NonEditableData modelState={modelState} handleSelect={setDisplayedModel} />
-        <EditDocument displayedModel={displayedModel} setModelState={setModelState} setDisplayedModel={setDisplayedModel} />
+    <div className='flex flex-col w-full'>
+      <div className='flex w-full'>
+        <div className="w-1/2 p-10 flex flex-col">
+          <NonEditableData modelState={modelState} handleSelect={setDisplayedModel} />
+        </div>
+        <div className="w-1/2 py-4 px-10 flex flex-col gap-4">
+          <EditDocument displayedModel={displayedModel} setModelState={setModelState} setDisplayedModel={setDisplayedModel} />
+        </div>
+      </div>
+      <div className="w-full p-10 flex flex-col">
+        <WeatherPanel weatherData={weatherData} />
+        </div>
     </div>
   );
 };

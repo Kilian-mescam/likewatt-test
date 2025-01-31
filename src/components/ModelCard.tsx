@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { DeleteDialog } from "./DeleteDialog";
 import { Input } from "./ui/input";
 import { Checkbox } from "./ui/checkbox";
+import { CreateButton } from "./CreateButton";
 
 type Props = {
   model?: Model,
@@ -18,13 +19,13 @@ export function ModelCard(
 ) {
 
   return (
-<Card>
-  <CardHeader>
-    <CardTitle>{model?.id ? model?.id : "Aucun ID attribué"}</CardTitle>
-  </CardHeader>
-  <CardContent className='flex flex-col gap-5'>
-    {children}
-  </CardContent>
-</Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>{model?.id ? model?.id : "Aucun ID attribué"}</CardTitle>
+      </CardHeader>
+      <CardContent className='flex flex-col gap-5'>
+        {children}
+      </CardContent>
+    </Card>
   )
 }

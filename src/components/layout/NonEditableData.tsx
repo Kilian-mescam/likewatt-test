@@ -9,9 +9,6 @@ type Props = {
   
 export function NonEditableData({ modelState, handleSelect }: Props ) {
     return (
-        <div className="w-1/2 p-10 flex flex-col gap-10">
-            <h1>Non editable</h1>
-            <ModelTable models={modelState} handleSelect={handleSelect} />
-        </div>
+        <ModelTable models={modelState} handleSelect={handleSelect} />
     ) 
 }
