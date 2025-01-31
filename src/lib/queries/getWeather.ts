@@ -2,11 +2,17 @@ import axios from "axios";
 
 
 
-export const getWeather = async (lon: string, lat: string) => {
+export const getWeather = async (lat: string, lon: string) => {
     try {
       const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
       const appid = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY
-        const requestURL = `${baseURL}?lat=${lat}&lon=${lon}&appid=${appid}`
+
+      if (!appid) {
+        throw new Error("API key is missing. Please check your environment variable.");
+      }
+
+    const requestURL = `${baseURL}?lat=${lat}&lon=${lon}&appid=${appid}`
+
       // Make the request using Axios
       const response = await axios.get(requestURL);
 

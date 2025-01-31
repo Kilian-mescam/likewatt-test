@@ -1,4 +1,3 @@
-
 import { Model } from "@/lib/entities"
 import { ModelTable } from "../ModelTable";
 
