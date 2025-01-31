@@ -1,11 +1,6 @@
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Model } from "@/lib/entities"
-import { Button } from "./ui/button";
-import { DeleteDialog } from "./DeleteDialog";
-import { Input } from "./ui/input";
-import { Checkbox } from "./ui/checkbox";
-import { CreateButton } from "./CreateButton";
 
 type Props = {
   model?: Model,

@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LIKEWATT TEST - KILIAN MESCAM
 
-## Getting Started
-
+## INSTALLATION
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## EXPLICATION DU PROJET
 
-To learn more about Next.js, take a look at the following resources:
+Le Projet est élaboré à l'aide de Next JS. Plusieurs librairies sont installées :
+- tailwind css (ui)
+- shadcn (composants)
+- react-hook-form (formulaire)
+- zod (validation du formulaire)
+- lucide-react (icones)
+- axios (requeêtes HTTP)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Le composant App effectue un appel API avec getData et récupère les données. Les données sont ensuite hydratées vers le composant Dashboard.
+Ce composant Dashboard comprend 3 composants :
+- Le composant NonEditableData (un tableau des données)
+- Le composant EditDocument (un formulaire pour modifier les données sélectionnées ou créer une nouvelle ligne de donnée)
+- le composant WeatherPanel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le Hook useEffect permet 2 choses : 
+- Créer un id aux modèles lorsque celui-ci est manquant (j'ai fait le choix de créer un id (si celui est manquant) afin de faciliter la création ou modification des lignes) En effet, si une ligne l'a pas d'id, le formulaire de droite créé une nouvelle ligne. Si l'id existe, cette ligne est modifiée.
+- Collecter les infos de géolocalisation pour le composant Météo
 
-## Deploy on Vercel
+## Composant Non Editable
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Le composant Non Editable affiche les données dans un table ModelTable créé à partir de Shadcn
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Composant EditDocument
+
+Le composant de droite EditDocument est un formulaire react-hook-form (DataForm) qui permet de créer des lignes de données supplémentaires. Un système de validation a été mis en place à l'aide de Zod. La validation du formulaire se base sur le modelSchema.
+
+Si l'on sélectionne une ligne sur le tableau de gauche, ces données s'affichent dans le composant Editable, le formulaire est ainsi pré-rempli et modifiable ou supprimable.
+
+## Composant Météo WeatherPanel
+
+Je récupère les données latitude et longitude en paramètre du composant fonction WeatherPanel. J'effectue la requête API getWeather à l'intérieur du useEffect. Je trie ensuite afin de récupérer une seule donnée par jour (je prends arbitrairement les données de 12:00 chaque journée). Je récupère ainsi le tableau de jour trié nommé filteredWeatherData, que j'affiche ensuite dans un carrousel.

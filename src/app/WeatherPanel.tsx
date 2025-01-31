@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Wind, Cloud, Sun, Thermometer, Droplet } from 'lucide-react'; // Icons for weather
 import { getWeather } from "@/lib/queries/getWeather";
-import { WeatherData, WeatherDay } from "@/lib/entities";
+import { WeatherData } from "@/lib/entities";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 type Props = {
@@ -59,6 +58,7 @@ export function WeatherPanel({ latitude, longitude }: Props) {
     );
   }
 
+  // format date
   const getFormattedDate = (dateString: string) => {
     const date = new Date(dateString);
     const options = { 
@@ -71,11 +71,10 @@ export function WeatherPanel({ latitude, longitude }: Props) {
     return date.toLocaleDateString('fr-FR', options); // Output in French format
   };
 
+  // filter to get only the items that includes "12:00:00" in order to have only 1 item per day
   const filteredWeatherData = weatherData?.list.filter((weatherDay) => 
     weatherDay.dt_txt.includes("12:00:00")
   );
-
-  console.log('filteredWeatherData', filteredWeatherData)
 
   return (
     <div className="mt-10">

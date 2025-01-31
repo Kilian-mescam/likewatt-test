@@ -44,9 +44,9 @@ export default function DataForm({ model, setModelState , setDisplayedModel}: Pr
         handleSubmit,
         reset,
         formState: { errors },
-    } = form;  // Make sure to destructure from the `form` object here
+    } = form;
 
-    // Function to delete the displayed model
+    // Function to delete the selected model
     const deleteModel = (modelToDelete: Model) => {
         if (!model) return;
 
@@ -107,7 +107,7 @@ export default function DataForm({ model, setModelState , setDisplayedModel}: Pr
                 >
                     <div className="flex flex-col gap-7">
                     
-                    {/* Model Name */}
+                        {/* Model Name */}
                         <div>
                             <Label>Modèle</Label>
                             <Input

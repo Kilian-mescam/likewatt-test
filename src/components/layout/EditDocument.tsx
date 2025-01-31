@@ -11,6 +11,7 @@ type Props = {
   }
 
 export function EditDocument({ displayedModel, setModelState, setDisplayedModel }: Props) {
+    // function called on button to change if form is used to create of edit
     const handleCreate = () => {
         setDisplayedModel(undefined)
     }
@@ -22,9 +23,8 @@ export function EditDocument({ displayedModel, setModelState, setDisplayedModel 
                 </ModelCard>
                 {
                     displayedModel == null ? 
-                        <></>
-                    : 
-                    <div  className='flex justify-between items-ends w-full'>
+                    <></>
+                    : <div  className='flex justify-between items-ends w-full'>
                         <span>
                             <CreateButton 
                                 onClick={handleCreate}

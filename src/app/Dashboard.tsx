@@ -33,10 +33,7 @@ export default function Dashboard({ models }: Props) {
         )
       );
     }
-  }, [modelState]);
 
-
-  useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -55,10 +52,7 @@ export default function Dashboard({ models }: Props) {
         }
       );
     }
-  }, []);
-
-  console.log('latitude', latitude)
-  console.log('longitude', longitude)
+  }, [modelState]);
 
   return (
     <div className='flex flex-col w-full'>
