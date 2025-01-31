@@ -8,10 +8,12 @@ export const getWeather = async (lat: string, lon: string) => {
       const appid = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY
       const cnt = '40'
 
+      // throw error in case api key is missing
       if (!appid) {
         throw new Error("API key is missing. Please check your environment variable.");
       }
 
+       // concatenate values 
         const requestURL = `${baseURL}?lat=${lat}&lon=${lon}&appid=${appid}&cnt=${cnt}`
 
       // Make the request using Axios
@@ -20,7 +22,7 @@ export const getWeather = async (lat: string, lon: string) => {
       // Extract the data from the response
       const data = response.data;
   
-      return data; // Return the full data or customize based on the structure
+      return data;
     } catch (error: unknown) {
       // Handle the error
       if (axios.isAxiosError(error)) {

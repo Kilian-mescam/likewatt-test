@@ -13,19 +13,24 @@ type Props = {
 }
 
 export default function Dashboard({ models }: Props) {
+  // data coming from getData
   const [modelState, setModelState] = useState(models);
+  // model selected on the table
   const [displayedModel, setDisplayedModel] = useState<Model | undefined>();
   const [error, setError] = useState('');
+
+  // location data used for weatherPanel
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
 
+  // toast message to display when sucess or error
   const  { toast } = useToast();
 
   useEffect(() => {
     // Check for any model in modelState with an empty or missing id
     const modelsWithMissingId = modelState.filter((model) => !model.id);
 
-    // If any models are found with missing id, update the state
+    // If any models are found with missing id, update the state and attribute an id with uuid
     if (modelsWithMissingId.length > 0) {
       setModelState((prevState) =>
         prevState.map((model) =>
@@ -34,6 +39,7 @@ export default function Dashboard({ models }: Props) {
       );
     }
 
+    // get position of current user, will be used on weatherPanel component
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -43,6 +49,7 @@ export default function Dashboard({ models }: Props) {
         (error) => {
           if (error.code === error.PERMISSION_DENIED) {
             setError("You denied location access. Please allow access to get your current location.");
+            // toast message in case user did not give access to position in his browser
             toast({
               title: "You denied location access. Please allow access to get your current location.",
           })

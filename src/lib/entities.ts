@@ -7,7 +7,7 @@ export type Model = {
   }
 
   export type WeatherDay = {
-    dt: number; // Unix timestamp
+    dt: number; 
     dt_txt: string;
     main: {
       temp: number;

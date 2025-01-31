@@ -10,7 +10,7 @@ export const getData = async () => {
     // Extract the data from the response
     const data = response.data.data;
 
-    return data; // Return the full data or customize based on the structure
+    return data;
   } catch (error: unknown) {
     // Handle the error
     if (axios.isAxiosError(error)) {
