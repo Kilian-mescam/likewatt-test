@@ -34,7 +34,7 @@ export default function RootLayout({
     <body suppressHydrationWarning={true}
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <div className="mx-auto width-full mt-20">
+      <div className="mx-auto width-full mt-24">
         <Header />
         <div>
           {children}

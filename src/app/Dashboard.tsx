@@ -66,7 +66,7 @@ export default function Dashboard({ models }: Props) {
         <div className="w-1/2 p-10 flex flex-col">
           <NonEditableData modelState={modelState} handleSelect={setDisplayedModel} />
         </div>
-        <div className="w-1/2 py-4 px-10 flex flex-col gap-4">
+        <div className="w-1/2 p-10 flex flex-col gap-4">
           <EditDocument displayedModel={displayedModel} setModelState={setModelState} setDisplayedModel={setDisplayedModel} />
         </div>
       </div>

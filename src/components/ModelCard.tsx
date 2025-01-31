@@ -23,7 +23,7 @@ export function ModelCard(
       <CardHeader>
         <CardTitle>{model?.id ? model?.id : "Aucun ID attribué"}</CardTitle>
       </CardHeader>
-      <CardContent className='flex flex-col gap-5'>
+      <CardContent className='flex flex-col gap-10'>
         {children}
       </CardContent>
     </Card>

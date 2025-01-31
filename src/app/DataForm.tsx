@@ -105,7 +105,7 @@ export default function DataForm({ model, setModelState , setDisplayedModel}: Pr
                     onSubmit={form.handleSubmit(submitForm)}
                     className="flex flex-col gap-4 md:gap-8"
                 >
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-7">
                     
                     {/* Model Name */}
                         <div>
@@ -164,7 +164,7 @@ export default function DataForm({ model, setModelState , setDisplayedModel}: Pr
                             <Button
                                 type="submit"
                                 className=""
-                                variant="secondary"
+                                variant="primary"
                                 title="Save"
                             >
                                 Sauvegarder

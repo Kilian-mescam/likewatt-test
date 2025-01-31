@@ -17,12 +17,14 @@ export function EditDocument({ displayedModel, setModelState, setDisplayedModel 
 
     return (
                 <>
+                <ModelCard model={displayedModel}>
+                    <DataForm model={displayedModel} setModelState={setModelState} setDisplayedModel={setDisplayedModel} />
+                </ModelCard>
                 {
                     displayedModel == null ? 
-                        <div className='flex justify-between w-full mb-3'><h1>Créer</h1><span>Sélectionner une ligne pour la modifier</span></div>
+                        <></>
                     : 
                     <div  className='flex justify-between items-ends w-full'>
-                        <h1>Modifier</h1>
                         <span>
                             <CreateButton 
                                 onClick={handleCreate}
@@ -32,10 +34,6 @@ export function EditDocument({ displayedModel, setModelState, setDisplayedModel 
                         </span>
                     </div>
                 }
-                
-                <ModelCard model={displayedModel}>
-                    <DataForm model={displayedModel} setModelState={setModelState} setDisplayedModel={setDisplayedModel} />
-                </ModelCard>
                 </>
     ) 
 }
