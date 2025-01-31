@@ -5,7 +5,7 @@ import { NonEditableData } from '@/components/layout/NonEditableData';
 import { Model } from '@/lib/entities';
 import React, { useEffect, useState } from 'react';
 import { generateCustomUUID } from '@/lib/utils';
-import { WeatherPanel } from '@/components/layout/WeatherPanel';
+import { WeatherPanel } from '@/app/WeatherPanel';
 import { useToast } from '@/hooks/use-toast';
 
 type Props = {
@@ -70,7 +70,7 @@ export default function Dashboard({ models }: Props) {
           <EditDocument displayedModel={displayedModel} setModelState={setModelState} setDisplayedModel={setDisplayedModel} />
         </div>
       </div>
-      <div className="w-full p-10 flex flex-col">
+      <div className="w-full px-10 flex flex-col">
         <WeatherPanel latitude={latitude} longitude={longitude} />
       </div>
     </div>

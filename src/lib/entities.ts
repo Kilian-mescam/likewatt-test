@@ -6,40 +6,43 @@ export type Model = {
     model: string
   }
 
-  export type WeatherData = {
-    coord: {
-      lat: number;
-      lon: number;
-    };
-    weather: {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    }[];
-    base: string;
+  export type WeatherDay = {
+    dt: number; // Unix timestamp
+    dt_txt: string;
     main: {
       temp: number;
       feels_like: number;
+      humidity: number;
+      pressure: number;
       temp_min: number;
       temp_max: number;
-      pressure: number;
-      humidity: number;
-      sea_level?: number;
-      grnd_level?: number;
     };
-    visibility: number;
+    weather: Array<{
+      description: string;
+      icon: string;
+    }>;
     wind: {
       speed: number;
       deg: number;
-      gust?: number;
+      gust: number;
     };
     clouds: {
       all: number;
     };
-    dt: number;
-    sys: {
-      country: string;
-      sunrise: number;
-    }
-  }
+    pop: number; // Probability of precipitation
+    visibility: number; // Visibility in meters
+  };
+
+  type City = {
+    id: number;
+    name: string;
+    country: string;
+    population: number;
+  };
+  
+  export type WeatherData = {
+    city: City;
+    cnt: number; // Count of weather entries
+    cod: string; // API response code
+    list: WeatherDay[]; // List of weather data for 5 days
+  };

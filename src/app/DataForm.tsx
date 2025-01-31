@@ -57,6 +57,10 @@ export default function DataForm({ model, setModelState , setDisplayedModel}: Pr
 
         // Clear the displayedModel from the state
         setDisplayedModel(undefined);
+
+        toast({
+            title: "Modèle supprimé",
+        })
     };
 
 
